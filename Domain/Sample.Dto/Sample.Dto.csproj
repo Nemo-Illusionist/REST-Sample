@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+      <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+      <PackageReference Include="Radilovsoft.Rest.Infrastructure" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sample.Db\Sample.Db.csproj" />
+    </ItemGroup>
+
+</Project>

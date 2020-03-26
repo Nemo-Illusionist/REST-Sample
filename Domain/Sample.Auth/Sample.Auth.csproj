@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+      <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.3" />
+      <PackageReference Include="Radilovsoft.Rest.Core" Version="1.0.0" />
+      <PackageReference Include="Radilovsoft.Rest.Data.Core" Version="1.0.0" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sample.Db\Sample.Db.csproj" />
+      <ProjectReference Include="..\Sample.Dto\Sample.Dto.csproj" />
+    </ItemGroup>
+
+</Project>
