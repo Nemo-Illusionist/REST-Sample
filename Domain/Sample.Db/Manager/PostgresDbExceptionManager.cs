@@ -14,11 +14,11 @@ namespace Sample.Db.Manager
 
                 switch (ex.SqlState)
                 {
-                    case "23503":
+                    case PostgresErrorCodes.ForeignKeyViolation:
                         throw new ForeignKeyViolationException(message, ex);
-                    case "23505":
+                    case PostgresErrorCodes.UniqueViolation:
                         throw new ObjectAlreadyExistsException(message, ex);
-                    case "40001":
+                    case PostgresErrorCodes.SerializationFailure:
                         throw new ConcurrentModifyException(message, ex);
                     default:
                         throw ex;
