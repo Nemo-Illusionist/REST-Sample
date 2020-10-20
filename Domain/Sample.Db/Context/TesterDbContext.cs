@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Radilovsoft.Rest.Data.Ef.Context;
@@ -20,8 +19,8 @@ namespace Sample.Db.Context
             NpgsqlConnection.GlobalTypeMapper.MapEnum<Gender>();
         }
 
-        public TesterDbContext([NotNull] IModelStore store,
-            [NotNull] IIndexProvider indexProvider,
+        public TesterDbContext(IModelStore store,
+            IIndexProvider indexProvider,
             DbContextOptions options)
             : base(options)
         {

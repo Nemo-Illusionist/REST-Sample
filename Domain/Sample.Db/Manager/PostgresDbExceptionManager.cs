@@ -28,7 +28,7 @@ namespace Sample.Db.Manager
             return exception;
         }
 
-        public bool IsConcurrentModifyException(System.Exception ex)
+        public bool IsRepeatAction(System.Exception ex)
         {
             return ex is ConcurrentModifyException;
         }

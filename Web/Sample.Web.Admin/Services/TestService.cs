@@ -2,7 +2,7 @@ using System;
 using AutoMapper;
 using Radilovsoft.Rest.Data.Core.Contract;
 using Radilovsoft.Rest.Data.Core.Contract.Provider;
-using Radilovsoft.Rest.Infrastructure.Contract;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 using Radilovsoft.Rest.Infrastructure.Service;
 using Sample.Db.Model.App;
 using Sample.Dto.Test;

@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Core.Exception;
+using Radilovsoft.Rest.Core.Exceptions;
 using Radilovsoft.Rest.Data.Core.Contract.Entity;
 using Radilovsoft.Rest.Infrastructure.Contract;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 
 namespace Sample.Web.Admin.Controllers.Base
 {
@@ -19,8 +19,7 @@ namespace Sample.Web.Admin.Controllers.Base
     {
         private readonly TService _crudService;
 
-        protected BaseCrudController([NotNull] TService crudDataService,
-            [NotNull] IFilterHelper filterHelper)
+        protected BaseCrudController(TService crudDataService, IFilterHelper filterHelper)
             : base(crudDataService, filterHelper)
         {
             _crudService = crudDataService ?? throw new ArgumentNullException(nameof(crudDataService));
@@ -29,8 +28,9 @@ namespace Sample.Web.Admin.Controllers.Base
 
         protected async Task<IActionResult> AddEntity(TRequest item)
         {
-            var id = await _crudService.Post(item).ConfigureAwait(false);
-            var result = await _crudService.GetById(id).ConfigureAwait(false);
+            var id = await _crudService.PostAsync(item).ConfigureAwait(false);
+            var result = await _crudService.GetByIdAsync(id).ConfigureAwait(false);
+            
             // ReSharper disable once Mvc.ActionNotResolved
             return CreatedAtAction(nameof(GetById), new {id}, result);
         }
@@ -39,7 +39,7 @@ namespace Sample.Web.Admin.Controllers.Base
         {
             try
             {
-                await _crudService.Put(id, item).ConfigureAwait(false);
+                await _crudService.PutAsync(id, item).ConfigureAwait(false);
                 return NoContent();
             }
             catch (ItemNotFoundException)
@@ -52,7 +52,7 @@ namespace Sample.Web.Admin.Controllers.Base
         {
             try
             {
-                await _crudService.Delete(id).ConfigureAwait(false);
+                await _crudService.DeleteAsync(id).ConfigureAwait(false);
                 return NoContent();
             }
             catch (ItemNotFoundException)

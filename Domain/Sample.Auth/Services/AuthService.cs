@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
-using Radilovsoft.Rest.Core.Exception;
+using Radilovsoft.Rest.Core.Exceptions;
 using Radilovsoft.Rest.Data.Core.Contract;
 using Radilovsoft.Rest.Data.Core.Contract.Provider;
 using Sample.Auth.Contracts;
@@ -21,10 +20,10 @@ namespace Sample.Auth.Services
         private readonly ITokenProvider _tokenProvider;
         private readonly IPasswordProvider _passwordProvider;
 
-        public AuthService([NotNull] IRoDataProvider dataProvider,
-            [NotNull] IAsyncHelpers asyncHelpers,
-            [NotNull] ITokenProvider tokenProvider,
-            [NotNull] IPasswordProvider passwordProvider)
+        public AuthService(IRoDataProvider dataProvider,
+            IAsyncHelpers asyncHelpers,
+            ITokenProvider tokenProvider,
+            IPasswordProvider passwordProvider)
         {
             _dataProvider = dataProvider ?? throw new ArgumentNullException(nameof(dataProvider));
             _asyncHelpers = asyncHelpers ?? throw new ArgumentNullException(nameof(asyncHelpers));

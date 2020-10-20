@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Sample.Db.Model.App;
 using Sample.Db.Model.Client;
@@ -8,7 +7,7 @@ namespace Sample.Db.Provider
 {
     internal static class FkProvider
     {
-        public static ModelBuilder BuildFk([NotNull] ModelBuilder builder)
+        public static ModelBuilder BuildFk(ModelBuilder builder)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 

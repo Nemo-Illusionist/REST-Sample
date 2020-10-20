@@ -1,9 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Core.Exception;
+using Radilovsoft.Rest.Core.Exceptions;
 using Sample.Web.Admin.Controllers.Base;
 using Sample.Auth.Contracts;
 using Sample.Dto;
@@ -15,7 +14,7 @@ namespace Sample.Web.Admin.Controllers.V1
     {
         private readonly IAuthService _authService;
 
-        public AuthorizationController([NotNull] IAuthService authService)
+        public AuthorizationController(IAuthService authService)
         {
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
         }

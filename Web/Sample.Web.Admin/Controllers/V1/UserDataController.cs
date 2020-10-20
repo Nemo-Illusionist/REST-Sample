@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Infrastructure.Contract;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 using Radilovsoft.Rest.Infrastructure.Dto;
 using Sample.Web.Admin.Controllers.Base;
 using Sample.Web.Admin.Models;
@@ -16,7 +15,7 @@ namespace Sample.Web.Admin.Controllers.V1
     public class UserDataController :
         BaseCrudController<IUserDataService, UserData, Guid, UserDataResponse, UserDataFullResponse, UserDataRequest>
     {
-        public UserDataController([NotNull] IUserDataService crudDataService, [NotNull] IFilterHelper filterHelper)
+        public UserDataController(IUserDataService crudDataService, IFilterHelper filterHelper)
             : base(crudDataService, filterHelper)
         {
         }

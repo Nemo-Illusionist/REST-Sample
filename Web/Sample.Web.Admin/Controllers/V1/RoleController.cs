@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Infrastructure.Contract;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 using Radilovsoft.Rest.Infrastructure.Dto;
 using Sample.Web.Admin.Controllers.Base;
 using Sample.Web.Admin.Models;
@@ -14,8 +13,7 @@ namespace Sample.Web.Admin.Controllers.V1
 {
     public class RoleController : BaseRoController<IRoleRoService, Role, Guid, BaseDto<Guid>, BaseDto<Guid>>
     {
-        public RoleController([NotNull] IRoleRoService crudService,
-            [NotNull] IFilterHelper filterHelper)
+        public RoleController(IRoleRoService crudService, IFilterHelper filterHelper)
             : base(crudService, filterHelper)
         {
         }

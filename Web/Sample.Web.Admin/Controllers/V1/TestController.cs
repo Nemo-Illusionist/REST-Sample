@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Infrastructure.Contract;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 using Radilovsoft.Rest.Infrastructure.Dto;
 using Sample.Web.Admin.Controllers.Base;
 using Sample.Web.Admin.Models;
@@ -16,7 +15,7 @@ namespace Sample.Web.Admin.Controllers.V1
     public class TestController :
         BaseCrudController<ITestService, Test, Guid, TestResponse, TestResponse, TestRequest>
     {
-        public TestController([NotNull] ITestService crudDataService, [NotNull] IFilterHelper filterHelper)
+        public TestController(ITestService crudDataService, IFilterHelper filterHelper)
             : base(crudDataService, filterHelper)
         {
         }

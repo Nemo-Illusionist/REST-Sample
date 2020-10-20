@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,8 +15,8 @@ using Radilovsoft.Rest.Data.Core.Contract.Provider;
 using Radilovsoft.Rest.Data.Ef.Context;
 using Radilovsoft.Rest.Data.Ef.Contract;
 using Radilovsoft.Rest.Data.Ef.Provider;
-using Radilovsoft.Rest.Infrastructure.Contract;
-using Radilovsoft.Rest.Infrastructure.Service;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
+using Radilovsoft.Rest.Infrastructure.Helpers;
 using Sample.Web.Admin.Services;
 using Sample.Auth.Contracts;
 using Sample.Auth.Services;
@@ -35,8 +34,8 @@ namespace Sample.Web.Admin
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
 
-        public Startup([NotNull] ILoggerFactory loggerFactory,
-            [NotNull] IConfiguration configuration,
+        public Startup(ILoggerFactory loggerFactory,
+            IConfiguration configuration,
             IWebHostEnvironment env)
         {
             _loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
@@ -99,8 +98,8 @@ namespace Sample.Web.Admin
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
-        public static void Configure([NotNull] IApplicationBuilder app, [NotNull] IWebHostEnvironment env,
-            [NotNull] IHostApplicationLifetime lifetime, [NotNull] IServiceProvider serviceProvider,
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IHostApplicationLifetime lifetime, IServiceProvider serviceProvider,
             IApiVersionDescriptionProvider provider)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));

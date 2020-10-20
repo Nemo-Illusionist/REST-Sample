@@ -1,14 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
-using JetBrains.Annotations;
 using Radilovsoft.Rest.Data.Core.Contract.Entity;
 using Radilovsoft.Rest.Data.Ef.Annotation;
 
 namespace Sample.Db.Model.App
 {
-    [PublicAPI]
-    [SuppressMessage("ReSharper", "CA2227")]
     [Table("test_topic", Schema = DbSchemeConstant.App)]
     public class TestTopic : ICreatedUtc, IDeletable
     {

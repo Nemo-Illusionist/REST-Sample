@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -15,12 +14,10 @@ using Sample.Db.Store;
 
 namespace Sample.Migrator
 {
-    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature)]
     public static class MigratorProgram
     {
         public static string EnvironmentName { get; private set; } = "Development";
 
-        [UsedImplicitly]
         private static void Main(string[] args)
         {
             var dataOptions = new OptionSet
@@ -87,13 +84,13 @@ namespace Sample.Migrator
         private readonly ILoggerFactory _loggerFactory;
 
         public MigratorEfDataConnection(IModelStore modelStore, IIndexProvider indexProvider,
-            [NotNull] DbContextOptions options,
+            DbContextOptions options,
             ILoggerFactory loggerFactory) : base(modelStore, indexProvider, options)
         {
             _loggerFactory = loggerFactory;
         }
 
-        protected override void OnConfiguring([NotNull] DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (optionsBuilder == null) throw new ArgumentNullException(nameof(optionsBuilder));
             base.OnConfiguring(optionsBuilder);

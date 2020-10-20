@@ -2,12 +2,12 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
-using Radilovsoft.Rest.Core.Exception;
+using Radilovsoft.Rest.Core.Exceptions;
 using Radilovsoft.Rest.Data.Core.Contract.Entity;
 using Radilovsoft.Rest.Infrastructure.Contract;
 using Radilovsoft.Rest.Infrastructure.Contract.Dto;
+using Radilovsoft.Rest.Infrastructure.Contract.Helper;
 using Sample.Web.Admin.Models;
 using Sample.Dto;
 
@@ -23,7 +23,7 @@ namespace Sample.Web.Admin.Controllers.Base
         private readonly IFilterHelper _filterHelper;
         private readonly TService _roService;
 
-        protected BaseRoController([NotNull] TService roDataService, [NotNull] IFilterHelper filterHelper)
+        protected BaseRoController(TService roDataService, IFilterHelper filterHelper)
         {
             _roService = roDataService ?? throw new ArgumentNullException(nameof(roDataService));
             _filterHelper = filterHelper ?? throw new ArgumentNullException(nameof(filterHelper));
@@ -45,7 +45,7 @@ namespace Sample.Web.Admin.Controllers.Base
                 orders = filter.Orders?.ToArray();
             }
 
-            var result = await _roService.GetByFilter(pageFilter, expression, orders)
+            var result = await _roService.GetByFilterAsync(pageFilter, expression, orders)
                 .ConfigureAwait(false);
             return Ok(result);
         }
@@ -54,7 +54,7 @@ namespace Sample.Web.Admin.Controllers.Base
         {
             try
             {
-                var result = await _roService.GetById(id).ConfigureAwait(false);
+                var result = await _roService.GetByIdAsync(id).ConfigureAwait(false);
                 return Ok(result);
             }
             catch (ItemNotFoundException)
